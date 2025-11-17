@@ -177,6 +177,11 @@ async function createWindow() {
 
   focusWindow();
 
+  // ensure editor focus is restored when lazygit opens
+  await vscode.commands.executeCommand(
+    "workbench.action.focusActiveEditorGroup"
+  );
+
   // lazygit window closes, unlink and focus on editor (where lazygit was)
   vscode.window.onDidCloseTerminal((terminal) => {
     if (terminal === lazyGitTerminal) {
